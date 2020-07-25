@@ -1,0 +1,4 @@
+spring:
+  datasource:
+    druid:
+      url: jdbc:mysql://rm-bp1p3wmcw43ov19l9zo.mysql.rds.aliyuncs.com:3306/code_practice?serverTimezone=UTC
