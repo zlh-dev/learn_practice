@@ -1,6 +1,7 @@
 package com.code.util;
 
-import lombok.extern.slf4j.Slf4j;
+import cn.hutool.log.Log;
+import cn.hutool.log.LogFactory;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -12,8 +13,8 @@ import java.io.StringWriter;
  * @author zlh-dev
  * @date 2020/07/05 11:35:43
  */
-@Slf4j
 public class ExceptionUtil {
+    private static final Log log = LogFactory.get();
 
     /**
      * 打印异常信息

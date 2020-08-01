@@ -56,7 +56,7 @@ public class Result<T> {
      * @return {@link Result <T>}
      */
     public static <T> Result<T> success(T data) {
-        return new Result<T>(true, ResultCode.SUCCESS.getCode(), ResultCode.SUCCESS.getMessage(), data);
+        return new Result<>(true, ResultCode.SUCCESS.getCode(), ResultCode.SUCCESS.getMessage(), data);
     }
 
     /**
@@ -75,7 +75,7 @@ public class Result<T> {
      * @return {@link Result <T>}
      */
     public static <T> Result<T> failed(ResultCode resultCode) {
-        return new Result<T>(false, resultCode.getCode(), resultCode.getMessage(), null);
+        return new Result<>(false, resultCode.getCode(), resultCode.getMessage(), null);
     }
 
 }

@@ -1,5 +1,6 @@
 package com.code;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -10,10 +11,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @date 2020/07/05 11:57:06
  */
 @SpringBootApplication
-public class LearnPracticeApplication {
+@MapperScan("com.code.mapper")
+public class SkeletonApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(LearnPracticeApplication.class, args);
+        SpringApplication.run(SkeletonApplication.class, args);
     }
 
 }

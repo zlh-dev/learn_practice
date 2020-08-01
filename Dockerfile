@@ -11,6 +11,6 @@ RUN mkdir /code
 RUN mkdir /code/files
 RUN mkdir /code/logs
 # 将maven打成的jar包复制到镜像目录中（相对路径---默认"."就是Dockerfile所在目录）
-ADD target/code_practice.jar code.jar
+ADD target/skeleton.jar code.jar
 # 指定容器启动时，需要执行的命令(运行该jar程序)
 ENTRYPOINT java -jar code.jar
