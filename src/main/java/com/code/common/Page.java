@@ -41,8 +41,8 @@ public class Page<T> {
      * @return {@link Page <T>}
      */
     public static <T> Page<T> restPage(List<T> list) {
-        Page<T> result = new Page<T>();
-        PageInfo<T> pageInfo = new PageInfo<T>(list);
+        Page<T> result = new Page<>();
+        PageInfo<T> pageInfo = new PageInfo<>(list);
         result.setTotalPage(pageInfo.getPages());
         result.setPageNum(pageInfo.getPageNum());
         result.setPageSize(pageInfo.getPageSize());

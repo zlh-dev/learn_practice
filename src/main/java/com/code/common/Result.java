@@ -78,4 +78,14 @@ public class Result<T> {
         return new Result<>(false, resultCode.getCode(), resultCode.getMessage(), null);
     }
 
+    /**
+     * 失败返回结果
+     *
+     * @param message 错误信息
+     * @return {@link Result <T>}
+     */
+    public static <T> Result<T> failed(String message) {
+        return new Result<T>(false, ResultCode.UNKNOWN_ERROR.getCode(), message, null);
+    }
+
 }

@@ -1,2 +1,2 @@
-# learn_practice
-学习
+# skeleton
+springboot骨架,下载即用

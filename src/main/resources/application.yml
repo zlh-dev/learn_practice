@@ -1,6 +1,6 @@
 spring:
   application:
-    name: learn-practice
+    name: skeleton
   profiles:
     # 配置文件选择
     active: test
@@ -16,7 +16,7 @@ spring:
     # log - 打印到日志中
     # off - 关闭打印
     # 是否开启启动图（默认console）
-    banner-mode: off
+    banner-mode: console
   output:
     ansi:
       # 检查终端是否支持ANSI，是的话就采用彩色输出
@@ -64,12 +64,12 @@ spring:
       # 监控统计用的filter:stat
       # 日志用的filter:log4j
       # 防御sql注入的filter:wall
-      filters: stat,wall,logback
+      filters: stat,wall
       # WebStatFilter配置
       web-stat-filter:
         # 是否启用StatFilter,默认值false
         enabled: true
-        # 经常需要排除一些不必要的url，比如*.js,/jslib/*等等
+        # 经常需要排除一些不必要的url，比如*.js,/js,lib/*等等
         exclusions: "*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*"
         # session统计功能
         session-stat-enable: true
