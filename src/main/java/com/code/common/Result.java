@@ -1,6 +1,6 @@
 package com.code.common;
 
-import com.code.constant.ResultCode;
+import com.code.constant.ErrorCode;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -22,7 +22,6 @@ import lombok.ToString;
 @AllArgsConstructor
 public class Result<T> {
 
-
     /**
      * 响应是否成功
      */
@@ -30,7 +29,7 @@ public class Result<T> {
     /**
      * 响应状态码
      */
-    private Integer code;
+    private String code;
     /**
      * 相应消息
      */
@@ -56,7 +55,7 @@ public class Result<T> {
      * @return {@link Result <T>}
      */
     public static <T> Result<T> success(T data) {
-        return new Result<>(true, ResultCode.SUCCESS.getCode(), ResultCode.SUCCESS.getMessage(), data);
+        return new Result<>(true, ErrorCode.SUCCESS.getCode(), ErrorCode.SUCCESS.getMessage(), data);
     }
 
     /**
@@ -65,17 +64,17 @@ public class Result<T> {
      * @return {@link Result <T>}
      */
     public static <T> Result<T> failed() {
-        return failed(ResultCode.UNKNOWN_ERROR);
+        return failed(ErrorCode.UNKNOWN_ERROR);
     }
 
     /**
      * 失败返回结果
      *
-     * @param resultCode 错误信息
+     * @param errorCode 错误信息
      * @return {@link Result <T>}
      */
-    public static <T> Result<T> failed(ResultCode resultCode) {
-        return new Result<>(false, resultCode.getCode(), resultCode.getMessage(), null);
+    public static <T> Result<T> failed(ErrorCode errorCode) {
+        return new Result<>(false, errorCode.getCode(), errorCode.getMessage(), null);
     }
 
     /**
@@ -85,7 +84,7 @@ public class Result<T> {
      * @return {@link Result <T>}
      */
     public static <T> Result<T> failed(String message) {
-        return new Result<T>(false, ResultCode.UNKNOWN_ERROR.getCode(), message, null);
+        return new Result<>(false, ErrorCode.UNKNOWN_ERROR.getCode(), message, null);
     }
 
 }

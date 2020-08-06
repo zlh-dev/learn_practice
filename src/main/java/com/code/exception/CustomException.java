@@ -1,6 +1,6 @@
 package com.code.exception;
 
-import com.code.constant.ResultCode;
+import com.code.constant.ErrorCode;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -22,6 +22,6 @@ import lombok.ToString;
 @AllArgsConstructor
 public class CustomException extends RuntimeException {
 
-    private ResultCode resultCode;
+    private ErrorCode errorCode;
 
 }

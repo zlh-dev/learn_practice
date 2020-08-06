@@ -34,18 +34,19 @@ public class NoRepeatSubmitAspect {
     public Object around(ProceedingJoinPoint pjp, NoRepeatSubmit nrs) {
         try {
             ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
-            String sessionId = RequestContextHolder.getRequestAttributes().getSessionId();
-            HttpServletRequest request = attributes.getRequest();
-            String key = sessionId + "-" + request.getServletPath();
-            // 如果缓存中有这个url视为重复提交
-            if (redisUtils.hasKey(key)) {
-                Object o = pjp.proceed();
-                redisUtils.set(key, 0, 2);
-                return o;
-            } else {
-                LOG.warn("重复提交");
-                return null;
+            if (attributes != null) {
+                String sessionId = attributes.getSessionId();
+                HttpServletRequest request = attributes.getRequest();
+                String key = sessionId + "-" + request.getServletPath();
+                // 如果缓存中有这个url视为重复提交
+                if (redisUtils.hasKey(key)) {
+                    redisUtils.set(key, 0, 2);
+                    return pjp.proceed();
+                } else {
+                    LOG.warn("重复提交");
+                }
             }
+            return null;
         } catch (Throwable e) {
             e.printStackTrace();
             LOG.error("验证重复提交时出现未知异常!");

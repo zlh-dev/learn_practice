@@ -1,7 +1,7 @@
 package com.code.exception;
 
 import com.code.common.Result;
-import com.code.constant.ResultCode;
+import com.code.constant.ErrorCode;
 import com.code.util.ExceptionUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -23,27 +23,17 @@ public class GlobalExceptionHandler {
      **/
     @ExceptionHandler(Exception.class)
     @ResponseBody
-    public Result error(Exception e) {
+    public Result<Object> error(Exception e) {
         log.error(ExceptionUtil.getMessage(e));
         // 通用异常结果
-        return Result.failed(ResultCode.UNKNOWN_ERROR);
-    }
-
-    /**
-     * -------- 指定异常处理方法 --------
-     **/
-    @ExceptionHandler(NullPointerException.class)
-    @ResponseBody
-    public Result error(NullPointerException e) {
-        log.error(ExceptionUtil.getMessage(e));
-        return Result.failed(ResultCode.NULL_POINT);
+        return Result.failed(ErrorCode.UNKNOWN_ERROR);
     }
 
     @ExceptionHandler(HttpClientErrorException.class)
     @ResponseBody
-    public Result error(IndexOutOfBoundsException e) {
+    public Result<Object> error(IndexOutOfBoundsException e) {
         log.error(ExceptionUtil.getMessage(e));
-        return Result.failed(ResultCode.HTTP_CLIENT_ERROR);
+        return Result.failed(ErrorCode.HTTP_CLIENT_ERROR);
     }
 
     /**
@@ -54,10 +44,10 @@ public class GlobalExceptionHandler {
      */
     @ExceptionHandler(CustomException.class)
     @ResponseBody
-    public Result customException(CustomException customException) {
+    public Result<Object> customException(CustomException customException) {
         // 记录日志
         log.error(ExceptionUtil.getMessage(customException));
-        ResultCode resultCode = customException.getResultCode();
-        return Result.failed(resultCode);
+        var errorCode = customException.getErrorCode();
+        return Result.failed(errorCode);
     }
 }
